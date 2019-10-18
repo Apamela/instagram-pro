@@ -48,4 +48,4 @@ def upload(request):
     return render(request,'/upload.html',{"form":form})
 
 
-    '
+    

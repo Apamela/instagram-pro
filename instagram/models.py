@@ -34,10 +34,3 @@ class comments (models.Model):
 
 
 
-#..........class for the post.........................................
-class post(models.Model):
-    title = models.TextField()
-    cover = models.ImageField(upload_to='images/')
-
-    def __str__(self):
-         return self.title

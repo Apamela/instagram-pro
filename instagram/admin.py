@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import post
+from .models import Image
 
 # Register your models here.
