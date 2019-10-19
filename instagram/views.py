@@ -6,6 +6,8 @@ from .models import Profile,Image
 from django.contrib.auth.models import User
 
 #Create your views here
+def welcome(request):
+    return render('Welcome.html')
 #......... this is for login page.........
 @login_required(login_url='account/login/')
 def index(request):

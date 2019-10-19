@@ -1,25 +1,31 @@
-{% load bootstrap3 %}
-{% load static %}
+
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>Instagr</title>
-        {% block styles %} {% bootstrap_css %} {% endblock %}
+        
+        {% if title %}
+        <title>Instagr-{{title}}</title>
+        {% else %}
+        <title>Instagram</title>
+        {% endif %}
+        
+        {% block styles %}
+          {% bootstrap_css%}
+          <link rel="stylesheet" href="{% static 'css/basegallery.css' %}">
+        {% endblock %}
     </head>
     <body>
-        {% include 'display/navbar.html%}
-
-        <div class="container-fluid">
-                    {% block content %}
-
-                    {% endblock %}
-        
-    </div>
+        {% include "navbar.html" %}
+        {% block content%}
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
         
     </body>
-    </html>
+    </html> 
