@@ -7,45 +7,4 @@ from django.contrib.auth.models import User
 
 #Create your views here
 def welcome(request):
-    return render('welcome.html')
-#......... this is for login page.........
-@login_required(login_url='account/login/')
-def image(request):  
-    instagram= image.get_all_instagrams()
-    return render (request,'all-instagram/image.html',{"instagram":instagram})
-#...............this for explore view function...............
-@login_required(login_url='account/login/')
-def explore(request):
-    return render(request,'/explore.html')
-
-#................this is for profile  view function............
-@login_required(login_url='account/login') 
-def profile(request):
-    return render(request,'/userprofile.html')
-
-#........... for the logout page...................
-def logout(request):
-     return render(request,'/logout.html')
-#....... login page ........................................
-def login(request):
-    return rended(request,'/login.html')
-
-#.....................uploading page..................
-@login_required(login_url='/account/login')
-def upload(request):
-    current_user = request.user
-    p = Profile.objects.filter(id=current_user.id).first()
-    imageuploader_profile = Image.objects.filter(imageuploader_profile=p)
-    if request.method =='POST':
-        form = postForm(request.POST,request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.imageuploader_profile=p
-            post.save
-            return redirect('/')
-    else:
-        form=PostForm
-    return render(request,'template/upload.html',{"form":form})
-
-
-    
+    return render(request,'welcome.html')
