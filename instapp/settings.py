@@ -15,7 +15,7 @@ import os
 
 # insert the login form for the user
 # LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/'
 # LOGOUT_URL = 'logout'
 # LOGOUT_REDIRECT_URL = 'login'
 
@@ -64,7 +64,7 @@ ROOT_URLCONF = 'instapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

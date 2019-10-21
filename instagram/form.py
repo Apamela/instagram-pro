@@ -8,7 +8,6 @@ class PostForm(forms.ModelsForm):
         model = Image
         fields = ('caption','image')
 
-class SignUpForm(forms.ModelForm):
-  class Meta:
-    model = Profile
-    exclude = ['bio','profile_pic']
+class  UserForm(forms.Form):
+       your_name= forms.CharField(label='First Name',max_length=30)
+       email = forms.EmailField(label = 'Email')

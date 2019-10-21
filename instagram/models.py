@@ -6,12 +6,12 @@ from django.contrib.auth.models import User
 
 
 # ........class user..............................................................................................................
-# class user(models.Model):
-#     email = models.CharField(max_length=60)
-#     username = models.CharField(max_length=60)
-#     password =models .CharField(max_length = 60)
-#     def __str__(self):
-#         return  self.email 
+class user(models.Model):
+    email = models.EmailField()
+    username = models.CharField(max_length=60)
+    # password =models .CharField(max_length = 60)
+    def __str__(self):
+        return  self.email 
 
 # ........................................class profile..................................................................................................
 
@@ -24,14 +24,14 @@ class Profile (models.Model):
     
     def __str__(self):
         return self.first_name
- 
+    
 # ..............class Image..........................................................................................................................   
 class Image (models.Model):
     name = models.CharField(max_length= 30)
     caption = models.CharField(max_length=60)
     image_likes = models.ManyToManyField('profile',default=False,blank=True,related_name='likes')
-    profile_pic = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True,related_name='comments')
-    image_comment = models.ManyToManyField('profile',default=False,blank=True)
+    post = models.TextField()
+    image_comment = models.ManyToManyField('profile',default=False,blank=True,related_name='comment')
     image_image = models.ImageField(upload_to='image')
      
     def save_Image(self):
@@ -40,5 +40,8 @@ class Image (models.Model):
         self.delete()
     def update_caption(self):
         self.update()
-    def __str__(self):
-        return self.name
+    
+    @classmethod
+    def get_all_image(cls):
+        image= cls.objects.all()
+        return image

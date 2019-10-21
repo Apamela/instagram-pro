@@ -7,14 +7,12 @@ from django.contrib.auth.models import User
 
 #Create your views here
 def welcome(request):
-    return render('Welcome.html')
+    return render('welcome.html')
 #......... this is for login page.........
 @login_required(login_url='account/login/')
-def index(request):
-    all_images = Image.objects.all()
-    all_users = Profile.objects.all()
-    return render(request,'/home.html',{"all_images":all_images},{"all_user":all_users})
-
+def image(request):  
+    instagram= image.get_all_instagrams()
+    return render (request,'all-instagram/image.html',{"instagram":instagram})
 #...............this for explore view function...............
 @login_required(login_url='account/login/')
 def explore(request):
@@ -47,7 +45,7 @@ def upload(request):
             return redirect('/')
     else:
         form=PostForm
-    return render(request,'/upload.html',{"form":form})
+    return render(request,'template/upload.html',{"form":form})
 
 
     
