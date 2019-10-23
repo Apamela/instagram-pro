@@ -4,13 +4,12 @@
 {% block content %}
 
 
-
 <div class="container" >      
     {% for images in all_image %}
 
     <div class="card" style="width:35rem; margin-top: 6%; margin-left: 20%; ">  
             
-            <span style="margin-bottom: 3%"><img src="{{prof.profile_pic.url}}" class="img-responsive profile_image"><strong>{{ images.user }}</strong></span>
+            <span style="margin-bottom: 3%"><img src="{{prof.profile_pic.url}}"class="img-responsive profile_image"><strong>{{ images.user }}</strong></span>
             
     <img src="{{images.image_image.url}}" height="400"width="400" class="img-responsive" alt="Image">     
    
@@ -19,7 +18,17 @@
             <h5> {{images.image_caption}} </h5>
             <h5> <small>{{images.date|timesince}}</small> </h5>
         </div>
-       
+        <div class="card-body">
+            <div class="col-md-6">
+        <hr>
+        {% for comments in images.comments_set.all %}
+        <h5> {{comments.comment}} </h5>
+        {% endfor %}
+        <a href="{%url 'comment' images.id%}" class="btn btn-default">Comment</a>
+        <a href="{%url 'like' images.id%}" class="btn btn-default">like</a>
+    </div>
+</div>
+        
      </div>
     {% endfor %}   
 </div>

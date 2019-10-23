@@ -1,29 +1,24 @@
 {%extends 'base.html'%}
 
 {% block content %}
-{{block.super}}
+
 
 <div class="container">
     <div class="row">
-        <div class="profile" style="margin-top: -7%">
-            <img src="{{profile.profile_pic.url}}" class="img-responsive avatar">
+        <div class="profile" style="margin-top:-5%">
+            <img src="{{profile.profile_pic.url}}" class="img-responsive avatar"alt="avatar"style="border-radius:50%"width="300"height="300">
         </div>
 
         <div class="imagecaption" style="margin-left: 15%">
-            <h5>{{profile.user}}</h5>
-            <h5>{% autoescape on %}
+            <h5 ><b>username:</b>{{profile.user}}</h5>
+            <h5><b>Am:</b>{% autoescape on %}
                 {{profile.bio| safe}}
                 {% endautoescape %}</h5>
         </div>
     </div>
-    <hr>
+    
 
-    <div class="row">
-        {% for user in profi_images %}
-        <div class="col-md-4" style="width: 90%; margin-left: 5%">
-            <img src="{{user.image.url}}" height="300" height="200" class="img-responsive" alt="Image">
-        </div>
-        {% endfor %}
+    
     </div>
 </div>
 {% endblock %}

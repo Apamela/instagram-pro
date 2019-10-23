@@ -2,13 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import datetime as dt
-from .models import Profile,Image
+from .models import Profile,Image,Comment
 from django.contrib.auth.models import User
-from .form import ProfileForm,ImageForm
+from .form import ProfileForm,ImageForm,CommentForm
 
 #Create your views here 
     
- 
+@login_required(login_url='/accounts/login/') 
 def welcome(request):
     all_image = Image.objects.all()
     current_user = request.user
@@ -32,13 +32,26 @@ def your_profile(request):
     return render(request, 'profile2.html', {"form": form})
 
    
-# @login_required(login_url='/accounts/login/')
-# def photo(request,photo_id):
-#     try:
-#         photo = photo.objects.get(id = photo_id)
-#     except DoesNotExist:
-#         raise Http404()
-#     return render(request,"welcome.html", {"photo":photo})
+@login_required(login_url='/accounts/login/')
+def add_Comment(request, image_id):
+    current_user = request.user
+    image_item = Image.objects.filter(id = image_id).first()
+    profiless = Profile.objects.filter( user = current_user.id).first()
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.posted_by = profiless
+            comment.commented_image = image_item
+            comment.save()
+            return redirect('welcome')
+
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"form": form, "image_id": image_id})
+
+
+
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -50,7 +63,7 @@ def profile(request):
 
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def upload(request):
 
     current_user = request.user
@@ -68,13 +81,10 @@ def upload(request):
 
 
 
-def following(request):
-    followingss = Followers.objects.filter(user_from = request.user)
-
-def likes(request,id):
+def like(request,id):
     
     likes=1
     image = Image.objects.get(id=id)
-    image.likes = image.likes+1
+    image.like = image.like+1
     image.save()    
     return redirect("/")

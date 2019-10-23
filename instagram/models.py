@@ -30,9 +30,8 @@ class Profile (models.Model):
 class Image (models.Model):
     name = models.CharField(max_length= 30)
     image_caption = models.CharField(max_length=60)
-    image_likes = models.ManyToManyField('profile',default=False,blank=True,related_name='likes')
+    like = models.IntegerField(default=0)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_comment = models.ManyToManyField('profile',default=False,blank=True,related_name='comment')
     image_image = models.ImageField(upload_to='image')
     date = models.DateTimeField(auto_now_add=True, null= True) 
     def save_Image(self):
@@ -48,3 +47,16 @@ class Image (models.Model):
     def get_all_image(cls):
         images = cls.objects.all()
         return images
+#........................................
+class Comment(models.Model):
+    comment= models.TextField()
+    photo = models.ForeignKey(Image, on_delete=models.CASCADE,null=True)
+    posted_by=models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return self.posted_by
+    
+
+    def get_comment(self,id):
+        comments=Comment.objects.filter(image_id=id)
+        return comments
