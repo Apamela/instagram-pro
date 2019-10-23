@@ -21,8 +21,9 @@
         <div class="card-body">
             <div class="col-md-6">
         <hr>
-        {% for comments in images.comments_set.all %}
+        {% for comments in images.comment %}
         <h5> {{comments.comment}} </h5>
+        {% empty %}
         {% endfor %}
         <a href="{%url 'comment' images.id%}" class="btn btn-default">Comment</a>
         <a href="{%url 'like' images.id%}" class="btn btn-default">like</a>
