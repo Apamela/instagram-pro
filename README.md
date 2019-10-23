@@ -20,6 +20,11 @@ the comment on it.
 * Bootstrap4. Installation($ pip install django-bootstrap4).
 * Pillow. Installation ($ pip install pillow).
 * etc.....
+# Contact
+MobileNumber:+250780365718
+Email: pamelab.desire@gmail.com
+
+
 
 
 
