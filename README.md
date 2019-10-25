@@ -1,7 +1,7 @@
 # instagram-pro
 # By-Pamela
 # Description
-this app its for uploading yo  picture and get , the followers even other people they can  like your picture and put
+this app its for uploading your  picture and get , the followers even other people they can  like your picture and put
 the comment on it.
 # Technology used
 * Python3.6
