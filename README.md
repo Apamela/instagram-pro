@@ -1,4 +1,4 @@
-# instagram-pro
+# instagram-pr
 # By-Pamela
 # Description
 this app its for uploading your  picture and get , the followers even other people they can  like your picture and put
