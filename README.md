@@ -26,6 +26,6 @@ MobileNumber:+250780365718
 Email: pamelab.desire@gmail.com
 
 # Licence
-copyright(C)2019 pamy
+copyright(C)2019
 
 
