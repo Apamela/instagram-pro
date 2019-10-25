@@ -23,7 +23,7 @@ the comment on it.
 # Contact
 MobileNumber:+250780365718 
 
-Email: pamelab.desire@gmail.com
+Email: pamelab.desire@gmail.
 
 # Licence
 copyright(C)2019 pamy
